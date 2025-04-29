@@ -1,0 +1,622 @@
+/* style.css */
+.fade-in {
+  animation: fadeIn ease 0.5s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Perbaikan tampilan Riwayat Cuaca */
+.bg-gray-100 { /* Gaya default untuk riwayat cuaca */
+  background-color: #f3f4f6; /* Warna abu-abu muda */
+  border-radius: 0.5rem; /* Pembulatan sudut */
+  padding: 1rem; /* Ruang di dalam elemen */
+  margin-top: 1rem; /* Jarak dari elemen sebelumnya */
+}
+
+.dark-mode .bg-gray-100 { /* Gaya dark mode untuk riwayat cuaca */
+  background-color: #2d3748; /* Warna abu-abu gelap */
+}
+
+#historyList {
+  list-style-type: none; /* Menghilangkan bullet point pada list */
+  padding: 0; /* Menghilangkan padding default list */
+  margin: 0; /* Menghilangkan margin default list */
+  overflow-y: auto; /* Menambahkan scroll jika konten melebihi tinggi */
+  max-height: 300px; /* Tinggi maksimum area riwayat cuaca (bisa disesuaikan) */
+}
+
+#historyList li {
+  background-color: #e5e7eb; /* Warna latar belakang setiap item riwayat (mode terang) */
+  color: #1f2937; /* Warna teks setiap item riwayat (mode terang) - abu-abu gelap */
+  padding: 0.75rem; /* Ruang di dalam setiap item */
+  border-radius: 0.375rem; /* Pembulatan sudut setiap item */
+  margin-bottom: 0.5rem; /* Jarak antar item */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); /* Efek bayangan tipis */
+}
+
+.dark-mode #historyList li {
+  background-color: #4a5568; /* Warna latar belakang dark mode setiap item riwayat */
+  color: #f8f8f8; /* Warna teks dark mode setiap item riwayat - putih */
+}
+
+#historyList li strong {
+  font-weight: bold; /* Menebalkan teks kota dan waktu */
+}
+
+/* src/assets/style.css */
+
+/* Smooth transition */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Body background */
+body {
+  background: linear-gradient(to bottom, #bfdbfe, #3b82f6);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #60a5fa;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Button loading spinner */
+.spinner {
+  border: 3px solid #cbd5e1;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Card hover effect */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Gaya untuk riwayat cuaca dalam card */
+#historyList {
+  list-style-type: none; /* Menghilangkan bullet point pada list */
+  padding: 0; /* Menghilangkan padding default list */
+  margin: 0; /* Menghilangkan margin default list */
+  overflow-y: auto; /* Menambahkan scroll jika konten melebihi tinggi */
+  max-height: 400px; /* Tinggi maksimum area riwayat cuaca */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Grid responsif untuk card */
+  gap: 1.5rem; /* Memberikan jarak antar card */
+}
+
+/* Card Riwayat Cuaca */
+#historyList li {
+  background-color: #ffffff; /* Warna latar belakang card */
+  color: #333333; /* Warna teks */
+  padding: 20px;
+  border-radius: 1rem; /* Pembulatan sudut card yang lebih elegan */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan lembut di sekitar card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efek transformasi dan bayangan */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Agar card memiliki tinggi penuh */
+}
+
+#historyList li:hover {
+  transform: translateY(-5px); /* Efek pergeseran vertikal saat hover */
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2); /* Efek bayangan lebih tajam saat hover */
+}
+
+/* Styling untuk suhu, kondisi, dan waktu */
+#historyList li .suhu {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b82f6; /* Warna biru untuk suhu */
+  margin-bottom: 10px;
+}
+
+#historyList li .kondisi {
+  font-size: 1rem;
+  color: #6b7280; /* Warna abu-abu untuk kondisi cuaca */
+  text-transform: capitalize;
+}
+
+#historyList li .time {
+  font-size: 0.875rem;
+  color: #9ca3af; /* Warna abu-abu muda untuk waktu */
+  margin-top: 10px;
+}
+
+/* Penataan header dan title pada card */
+#historyList li .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#historyList li .header h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+#historyList li .header span {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* Responsif untuk tampilan lebih kecil */
+@media screen and (max-width: 768px) {
+  #historyList {
+    max-height: 300px; /* Mengurangi tinggi maksimum untuk layar lebih kecil */
+    grid-template-columns: 1fr 1fr; /* Dua card per baris */
+  }
+
+  #historyList li {
+    padding: 15px;
+  }
+
+  #historyList li .suhu {
+    font-size: 1.25rem;
+  }
+
+  #historyList li .kondisi {
+    font-size: 0.875rem;
+  }
+
+  #historyList li .time {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #historyList {
+    max-height: 250px; /* Mengurangi tinggi maksimal untuk layar kecil */
+    grid-template-columns: 1fr; /* Satu card per baris */
+  }
+
+  #historyList li {
+    padding: 10px;
+  }
+
+  #historyList li .suhu {
+    font-size: 1rem;
+  }
+
+  #historyList li .kondisi {
+    font-size: 0.75rem;
+  }
+
+  #historyList li .time {
+    font-size: 0.625rem;
+  }
+}
+
+/* style.css */
+
+/* Styling untuk Spinner */
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom Shadow */
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effects */
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.hover\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom animation for button */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Styling for buttons */
+.bg-blue-600 {
+  background-color: #3498db;
+}
+
+.bg-blue-600:hover {
+  background-color: #2980b9;
+}
+
+.bg-blue-700 {
+  background-color: #2980b9;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-blue-700 {
+  color: #1f5f7a;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.sm\:w-80 {
+  width: 20rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+.transform {
+  transform: scale(1);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Tailwind container */
+@media (min-width: 640px) {
+  .sm\:w-80 {
+    width: 20rem;
+  }
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .max-w-6xl {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 640px) {
+  .w-64 {
+    width: 16rem;
+  }
+}
+
+/* Tombol input dengan max-width */
+.input-button {
+  max-width: 200px;  /* Maksimum lebar tombol */
+  width: 100%;  /* Lebar tombol mengikuti kontainer */
+  padding: 0.75rem 1.5rem; /* Menambahkan padding agar terlihat lebih besar */
+  border-radius: 0.5rem;  /* Membulatkan sudut tombol */
+  background-color: #3498db;  /* Warna tombol */
+  color: white;  /* Warna teks tombol */
+  font-weight: bold;
+  text-align: center;  /* Mengatur teks agar terpusat */
+  transition: background-color 0.3s ease;  /* Animasi transisi */
+}
+
+.input-button:hover {
+  background-color: #2980b9;  /* Warna tombol saat hover */
+}
+
+/* Tombol input dengan lebar relatif */
+.input-button-relative {
+  width: auto;  /* Lebar tombol sesuai dengan konten */
+  padding: 0.75rem 1.5rem; /* Padding tombol */
+  border-radius: 0.5rem;  /* Pembulatan sudut */
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.input-button-relative:hover {
+  background-color: #2980b9;
+}
+
+/* Tombol input menggunakan flexbox */
+.input-button-flex {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.input-button-flex:hover {
+  background-color: #2980b9;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="text"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.weather-card {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.weather-card h2 {
+  color: #343a40;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.weather-card p {
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.weather-card p span {
+  font-weight: bold;
+}
+
+.weather-card .timestamp {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.history-card {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.history-card h3 {
+  color: #343a40;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.history-item {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 8px;
+  color: #212529;
+  font-size: 16px;
+}
+
+.history-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Gaya untuk container yang membungkus card riwayat */
+.weather-cards-container {
+  display: flex; /* Tetap menggunakan flex untuk menata card secara horizontal */
+  flex-direction: row;
+  overflow-x: auto; /* Tetap aktifkan scroll horizontal jika perlu */
+  gap: 16px; /* Jarak antar card */
+  padding: 16px; /* Padding di sekitar container */
+  height: 400px; /* Tinggi tetap untuk container riwayat (bisa disesuaikan) */
+  overflow-y: auto; /* Aktifkan scroll vertikal jika card melebihi tinggi */
+}
+
+/* Gaya untuk setiap card riwayat */
+.weather-card {
+  min-width: 300px; /* Lebar minimum setiap card */
+  /* Gaya lain untuk card Anda */
+}
+
+/* Pastikan gaya card yang sudah ada tetap diterapkan */
+.weather-card.bg-white {
+  background-color: #ffffff;
+}
+
+.weather-card.p-6 {
+  padding: 1.5rem;
+}
+
+.weather-card.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.weather-card.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.weather-card.hover\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.weather-card.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+.weather-card.flex {
+  display: flex;
+}
+
+.weather-card.flex-col {
+  flex-direction: column;
+}
+
+.weather-card.items-start {
+  align-items: flex-start;
+}
+

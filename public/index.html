@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informasi Cuaca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body class="bg-blue-200 p-4 md:p-8 font-sans transition-colors duration-300 dark:bg-gray-800 dark:text-gray-100" id="body">
+
+    <div class="container mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-3xl lg:max-w-4xl dark:bg-gray-900">
+        <div class="md:flex">
+            <div class="p-6 md:p-8 w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Informasi Cuaca</h1>
+                    <button id="darkModeToggle" class="bg-gray-800 text-white px-3 py-2 rounded text-sm focus:outline-none">
+                        <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0020.354 15.354z"></path>
+                        </svg>
+                        <svg id="sunIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1m-16 0h-1m15.232 5.232l-.707-.707m-14.464 0l-.707.707m12.02-12.02l.707.707m-14.464 0l.707-.707M3.636 9.636a9 9 0 1012.728 0m-12.728 0h10.972"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mb-6 flex space-x-3">
+                    <input type="text" id="city" placeholder="Masukkan nama kota"
+                           class="shadow border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" />
+                    <button id="cekBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline">Cek Cuaca</button>
+                </div>
+
+                <div class="mb-6">
+                    <select id="moodInput" class="shadow border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                        <option value="">Pilih Suasana Hati</option>
+                        <option value="stres">Stres</option>
+                        <option value="lelah">Lelah</option>
+                        <option value="senang">Senang</option>
+                        <option value="cemas">Cemas</option>
+                        <option value="sedih">Sedih</option>
+                        <option value="bingung">Bingung</option>
+                        <option value="termotivasi">Termotivasi</option>
+                    </select>
+                </div>
+
+                <div id="weatherResult" class="hidden mt-6 p-6 bg-blue-100 rounded shadow dark:bg-gray-700 dark:text-gray-300">
+                    <h2 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">Hasil Cuaca</h2>
+                    <div id="weatherData" class="space-y-2"></div>
+                </div>
+
+                <div id="saranAktivitas" class="hidden mt-6 p-6 bg-green-100 rounded shadow dark:bg-gray-700 dark:text-gray-300">
+                    <h2 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">Saran Aktivitas Cuaca</h2>
+                    <p id="aktivitasText" class="text-sm text-gray-700 dark:text-gray-300"></p>
+                </div>
+
+                <div id="saranMood" class="hidden mt-6 p-6 bg-yellow-100 rounded shadow dark:bg-gray-700 dark:text-gray-300">
+                  <h2 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">Saran Aktivitas Berdasarkan Mood</h2>
+                  <p id="aktivitasMoodText" class="text-sm text-gray-700 dark:text-gray-300"></p>
+              </div>
+            </div>
+            <div class="bg-gray-100 p-6 md:p-8 dark:bg-gray-800">
+                <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Riwayat Cuaca</h2>
+                <ul id="historyList" class="space-y-3"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
