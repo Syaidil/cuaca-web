@@ -620,3 +620,57 @@ button:hover {
   align-items: flex-start;
 }
 
+/* style.css */
+
+/* Animasi untuk loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Container khusus untuk grid card */
+.weather-cards-container {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Tampilan card cuaca */
+.weather-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Tambahan efek hover untuk input dan button */
+input:hover,
+input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Tailwind blue-500 */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Responsif padding untuk kontainer utama di fallback */
+@media (min-width: 640px) {
+  .main-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    padding: 2rem;
+  }
+}
