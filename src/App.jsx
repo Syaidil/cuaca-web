@@ -97,24 +97,24 @@ function App() {
   const isEmptyData = !cuacaData || Object.keys(cuacaData).length === 0;
 
   return (
-    <div className="min-h-screen flex flex-col items-center p-4 bg-gradient-to-b from-blue-300 via-blue-400 to-blue-600">
-      <h1 className="text-4xl font-extrabold mb-6 text-white text-center shadow-lg shadow-blue-900">
+    <div className="min-h-screen flex flex-col items-center p-4 sm:p-6 lg:p-8 bg-gradient-to-b from-blue-300 via-blue-400 to-blue-600">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 text-white text-center shadow-lg shadow-blue-900">
         Info Cuaca Terkini
       </h1>
 
       {/* Input dan Button */}
-      <div className="flex flex-col md:flex-row items-center mb-6 w-full max-w-2xl">
+      <div className="flex flex-col sm:flex-row items-center mb-6 w-full max-w-2xl">
         <input
           type="text"
           placeholder="Masukkan nama kota"
           value={kotaInput}
           onChange={(e) => setKotaInput(e.target.value)}
           onKeyPress={handleKeyPress}  // Menambahkan event listener untuk Enter
-          className="p-3 rounded-lg w-full md:mr-4 mb-4 md:mb-0 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all transform hover:scale-105"
+          className="p-3 rounded-lg w-full sm:w-2/3 md:w-1/2 lg:w-1/3 mr-0 sm:mr-4 mb-4 sm:mb-0 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all transform hover:scale-105"
         />
         <button
           onClick={handleCariCuaca}
-          className="bg-white text-white-700 font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg hover:bg-blue-100 transition-all transform hover:scale-105"
+          className="bg-white text-gray-700 font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg hover:bg-blue-100 transition-all transform hover:scale-105"
         >
           Cari Cuaca
         </button>
@@ -128,7 +128,7 @@ function App() {
       ) : isEmptyData ? (
         <p className="text-white text-lg">Belum ada data cuaca. Coba cari kota dulu.</p>
       ) : (
-        <div className="weather-cards-container w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="weather-cards-container w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {Object.entries(cuacaData)
             .reverse()
             .map(([key, item], index) => (
