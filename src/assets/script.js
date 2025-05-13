@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue } from "firebase/database";
 
-
 // Konfigurasi Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCPH0NJ6f-hIvGcR5wSurlO8ZPnEWbZj5I",
@@ -17,8 +16,6 @@ const firebaseConfig = {
 
 // Inisialisasi Firebase
 const app = initializeApp(firebaseConfig);
-
-// Mendapatkan referensi ke database
 const db = getDatabase(app);
 
 // API Key OpenWeatherMap
@@ -35,10 +32,6 @@ const aktivitasText = document.getElementById("aktivitasText");
 const moodInput = document.getElementById("moodInput");
 const aktivitasMoodText = document.getElementById("aktivitasMoodText");
 const saranMoodDiv = document.getElementById("saranMood");
-const toggleBtn = document.getElementById("darkModeToggle");
-const body = document.getElementById("body");
-const moonIcon = document.getElementById("moonIcon");
-const sunIcon = document.getElementById("sunIcon");
 
 // Ambil data cuaca dari API
 async function getWeatherData(city) {
@@ -122,7 +115,7 @@ function tampilkanSaranMood(mood) {
   saranMoodDiv.classList.add("fade-in");
 }
 
-// Simpan riwayat ke Firebase
+// Simpan riwayat cuaca ke Firebase
 async function saveWeatherHistory(data) {
   const historyRef = ref(db, "riwayatCuaca");
   await push(historyRef, data);
@@ -147,34 +140,36 @@ onValue(ref(db, "riwayatCuaca"), (snapshot) => {
   }
 });
 
-// Cek dark mode dari localStorage
-if (localStorage.getItem("darkMode") === "true") {
-  body.classList.add("dark");
-  moonIcon.classList.remove("hidden");
-  sunIcon.classList.add("hidden");
+// Fungsi untuk mengatur latar belakang berdasarkan cuaca
+function setBackground(cuaca) {
+  if (cuaca === "Clear") {
+    document.body.style.backgroundColor = "#87CEEB"; // Biru langit cerah
+  } else if (cuaca === "Rain" || cuaca === "Drizzle") {
+    document.body.style.backgroundColor = "#5F6368"; // Abu-abu hujan
+  } else if (cuaca === "Snow") {
+    document.body.style.backgroundColor = "#B0E0E6"; // Warna salju
+  } else {
+    document.body.style.backgroundColor = "#D3D3D3"; // Warna default
+  }
 }
 
-// Tombol toggle dark mode
-toggleBtn.addEventListener("click", () => {
-  body.classList.toggle("dark");
-  moonIcon.classList.toggle("hidden");
-  sunIcon.classList.toggle("hidden");
-  localStorage.setItem("darkMode", body.classList.contains("dark"));
-});
+// Fungsi untuk menambahkan player YouTube dengan link sesuai cuaca
+function addYouTubePlayer(cuaca) {
+  const playerDiv = document.getElementById("playerDiv");
+  let youtubeLink = "";
 
-// Fungsi untuk mengatur latar belakang berdasarkan kondisi cuaca
-function setBackground(cuaca) {
-    if (cuaca === "Clear") {
-      document.body.style.backgroundColor = "#87CEEB"; // Biru langit cerah
-    } else if (cuaca === "Rain" || cuaca === "Drizzle") {
-      document.body.style.backgroundColor = "#5F6368"; // Abu-abu hujan
-    } else if (cuaca === "Snow") {
-      document.body.style.backgroundColor = "#B0E0E6"; // Warna salju
-    } else {
-      document.body.style.backgroundColor = "#D3D3D3"; // Warna default
-    }
+  // Menentukan link video YouTube sesuai cuaca
+  if (cuaca.includes("hujan")) {
+    youtubeLink = "https://www.youtube.com/watch?v=xyz"; // Ganti dengan ID video YouTube yang sesuai
+  } else if (cuaca.includes("sunny")) {
+    youtubeLink = "https://www.youtube.com/watch?v=abc"; // Ganti dengan ID video YouTube yang sesuai
   }
 
+  // Menampilkan player YouTube dengan link yang sesuai
+  playerDiv.innerHTML = `
+    <a href="${youtubeLink}" target="_blank" class="text-blue-500 hover:underline">Klik untuk mendengarkan musik cuaca ${cuaca}</a>
+  `;
+}
 
 // Tombol cek cuaca
 cekBtn.addEventListener("click", async () => {
@@ -194,6 +189,7 @@ cekBtn.addEventListener("click", async () => {
     tampilkanSaranAktivitas(data);
     tampilkanSaranMood(mood);
     setBackground(data.weather[0].main);
+    addYouTubePlayer(data.weather[0].main);
     await saveWeatherHistory(data);
   }
   cityInput.value = "";
