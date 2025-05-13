@@ -890,3 +890,286 @@ button:hover {
     flex: 1 1 calc(30% - 20px);
   }
 }
+
+/* Untuk tampilan layar kecil (ponsel) */
+@media screen and (max-width: 768px) {
+  #historyList {
+    grid-template-columns: 1fr 1fr; /* Dua card per baris */
+    max-height: 300px; /* Menyesuaikan tinggi maksimum */
+  }
+
+  #historyList li {
+    padding: 15px; /* Penyesuaian padding */
+  }
+
+  #historyList li .suhu {
+    font-size: 1.25rem; /* Ukuran font suhu */
+  }
+
+  #historyList li .kondisi {
+    font-size: 0.875rem; /* Ukuran font kondisi cuaca */
+  }
+
+  #historyList li .time {
+    font-size: 0.75rem; /* Ukuran font waktu */
+  }
+
+  .container {
+    padding: 20px; /* Menyesuaikan padding container */
+    gap: 10px; /* Mengurangi jarak antar elemen */
+    width: 100%; /* Agar container mengikuti lebar layar */
+  }
+
+  .input-group {
+    gap: 8px; /* Mengurangi jarak antar elemen input */
+  }
+
+  input[type="text"] {
+    padding: 10px; /* Menyesuaikan padding input untuk perangkat kecil */
+    font-size: 14px; /* Ukuran font input */
+  }
+
+  button {
+    padding: 10px 14px; /* Menyesuaikan ukuran tombol */
+    font-size: 14px; /* Ukuran font tombol */
+  }
+
+  .weather-card {
+    padding: 15px; /* Menyesuaikan padding card cuaca */
+  }
+
+  .history-item {
+    font-size: 14px; /* Ukuran font riwayat cuaca */
+  }
+
+  .history-card {
+    padding: 15px; /* Menyesuaikan padding untuk riwayat card */
+  }
+}
+
+/* Untuk tampilan layar lebih kecil (ponsel dengan ukuran sangat kecil) */
+@media screen and (max-width: 480px) {
+  #historyList {
+    grid-template-columns: 1fr; /* Satu card per baris */
+    max-height: 250px; /* Menyesuaikan tinggi maksimal */
+  }
+
+  #historyList li {
+    padding: 10px; /* Menyesuaikan padding untuk elemen li */
+  }
+
+  #historyList li .suhu {
+    font-size: 1rem; /* Ukuran font suhu */
+  }
+
+  #historyList li .kondisi {
+    font-size: 0.75rem; /* Ukuran font kondisi cuaca */
+  }
+
+  #historyList li .time {
+    font-size: 0.625rem; /* Ukuran font waktu */
+  }
+
+  .input-group {
+    flex-direction: column; /* Mengubah susunan input menjadi kolom */
+    gap: 6px; /* Mengurangi jarak antar input */
+  }
+
+  input[type="text"] {
+    padding: 8px; /* Menyesuaikan padding input */
+    font-size: 12px; /* Ukuran font input */
+  }
+
+  button {
+    padding: 8px 12px; /* Menyesuaikan padding tombol */
+    font-size: 12px; /* Ukuran font tombol */
+  }
+
+  .weather-card {
+    padding: 12px; /* Menyesuaikan padding untuk card cuaca */
+  }
+
+  .history-item {
+    font-size: 12px; /* Ukuran font riwayat cuaca */
+  }
+
+  .history-card {
+    padding: 12px; /* Menyesuaikan padding untuk card riwayat */
+  }
+}
+
+/* Untuk tampilan layar tablet */
+@media screen and (max-width: 1024px) {
+  #historyList {
+    grid-template-columns: 1fr 1fr; /* Dua card per baris */
+  }
+
+  #historyList li {
+    padding: 18px; /* Penyesuaian padding item */
+  }
+
+  .container {
+    padding: 25px; /* Menyesuaikan padding container */
+    gap: 15px; /* Mengurangi jarak antar elemen */
+  }
+
+  input[type="text"] {
+    padding: 12px; /* Menyesuaikan padding input */
+  }
+
+  button {
+    padding: 12px 18px; /* Menyesuaikan ukuran tombol */
+  }
+
+  .weather-card {
+    padding: 18px; /* Menyesuaikan padding card cuaca */
+  }
+
+  .history-item {
+    font-size: 14px; /* Ukuran font untuk riwayat cuaca */
+  }
+
+  .history-card {
+    padding: 18px; /* Menyesuaikan padding untuk card riwayat */
+  }
+}
+
+/* Styling untuk tombol feedback */
+.feedback-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #2d4b94; /* Biru profesional */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.feedback-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(255, 253, 253, 0.15);
+}
+
+.feedback-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.7);
+}
+
+/* Styling untuk overlay modal */
+.feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+/* Styling untuk modal feedback */
+.feedback-modal {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.feedback-modal h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.feedback-modal p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Styling untuk rating stars */
+.rating {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 220px;
+  margin-top: 10px;
+}
+
+.rating label {
+  cursor: pointer;
+  font-size: 30px;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.rating input:checked ~ label {
+  color: #f39c12; /* Warna kuning saat terpilih */
+}
+
+.rating input:focus {
+  outline: none;
+}
+
+/* Styling untuk form input dan textarea */
+.feedback-modal input,
+.feedback-modal textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.feedback-modal input:focus,
+.feedback-modal textarea:focus {
+  outline: none;
+  border-color: #2d4b94;
+}
+
+/* Styling untuk tombol kirim feedback */
+.feedback-modal button {
+  background-color: #2d4b94;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.feedback-modal button:hover {
+  background-color: #1e3d77;
+}
+
+/* Animasi fade-in untuk modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
